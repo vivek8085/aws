@@ -1,4 +1,13 @@
 #!/bin/bash
+
+# === Prompt for User Input ===
+read -p "Enter your S3 bucket name: " S3_BUCKET
+read -p "Enter your Lambda execution role ARN: " LAMBDA_ROLE_ARN
+
+REGION="us-east-1"
+ZIP_NAME="get_all_products_code.zip"
+FUNCTION_NAME="get_all_products"
+
 # === 1. Download code.zip ===
 echo "🔽 Downloading code.zip..."
 wget "https://aws-tc-largeobjects.s3.us-west-2.amazonaws.com/CUR-TF-200-ACCDEV-2-91558/05-lab-lambda/code.zip" -P /home/ec2-user/environment
@@ -30,7 +39,7 @@ EOF
 zip $ZIP_NAME get_all_products_code.py
 
 # === 5. Upload to S3 ===
-echo "☁️ Uploading code to S3..."
+echo "☁️ Uploading code to S3 bucket: $S3_BUCKET"
 aws s3 cp $ZIP_NAME s3://$S3_BUCKET/
 
 # === 6. Create Boto3 wrapper ===
