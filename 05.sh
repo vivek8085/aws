@@ -2,6 +2,7 @@
 
 # === Prompt for User Input ===
 read -p "Enter your S3 bucket name: " S3_BUCKET
+# ===Enter your Lambda execution role ARN: arn:aws:iam::123456789012:role/lambda-basic-role
 read -p "Enter your Lambda execution role ARN: " LAMBDA_ROLE_ARN
 
 REGION="us-east-1"
